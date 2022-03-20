@@ -15,16 +15,15 @@ var gameOver, restart;
 
 
 function preload(){
-  jumpSound = loadSound("jump.wav")
-  collidedSound = loadSound("collided.wav")
+  jumpSound = loadSound("jump.mp3")
+  collidedSound = loadSound("die.mp3")
   
   backgroundImg = loadImage("backgroundImg.png")
-  sunAnimation = loadImage("sun.png");
   
-  trex_running = loadAnimation("trex_2.png","trex_1.png","trex_3.png");
+  trex_running = loadAnimation("trex1.png","trex3.png","trex4.png");
   trex_collided = loadAnimation("trex_collided.png");
   
-  groundImage = loadImage("ground.png");
+  groundImage = loadImage("ground2.png");
   
   cloudImage = loadImage("cloud.png");
   
@@ -40,17 +39,13 @@ function preload(){
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
-  sun = createSprite(width-50,100,10,10);
-  sun.addAnimation("sun", sunAnimation);
-  sun.scale = 0.1
-  
   trex = createSprite(50,height-70,20,50);
   
   
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
-  trex.setCollider('circle',0,0,350)
-  trex.scale = 0.08;
+  trex.setCollider('circle',0,0,50)
+  trex.scale = 1;
   
   invisibleGround = createSprite(width/2,height-10,width,125);  
   invisibleGround.shapeColor = "#f4cbaa";
@@ -66,8 +61,8 @@ function setup() {
   restart = createSprite(width/2,height/2);
   restart.addImage(restartImg);
   
-  gameOver.scale = 0.5;
-  restart.scale = 0.1;
+  gameOver.scale = 1;
+  restart.scale = 1;
 
   gameOver.visible = false;
   restart.visible = false;
@@ -147,7 +142,7 @@ function spawnClouds() {
     var cloud = createSprite(width+20,height-300,40,10);
     cloud.y = Math.round(random(100,220));
     cloud.addImage(cloudImage);
-    cloud.scale = 0.5;
+    cloud.scale = 1;
     cloud.velocityX = -3;
     
      //assign lifetime to the variable
@@ -182,7 +177,7 @@ function spawnObstacles() {
     }
     
     //assign scale and lifetime to the obstacle           
-    obstacle.scale = 0.3;
+    obstacle.scale = 1;
     obstacle.lifetime = 300;
     obstacle.depth = trex.depth;
     trex.depth +=1;
